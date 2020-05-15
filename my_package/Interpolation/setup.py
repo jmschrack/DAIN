@@ -10,7 +10,7 @@ src=[
     'interpolation_cuda_kernel.cu'
 ]
 
-cxx_args = ['-std=c++11']
+cxx_args = ['-std=c++14']
 
 nvcc_args = [
     '-gencode', 'arch=compute_50,code=sm_50',

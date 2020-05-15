@@ -698,8 +698,7 @@ def preprocessor(output_directory, filepath, stats, hip_clang_launch, is_pytorch
         output_source = RE_CU_SUFFIX.sub('.hip', output_source)
 
     # ADDED FOR DAIN:  manually rename the import statements to use the newly converted hip statements
-    if filepath.endswith(".cc"):
-        output_source = output_source.replace('_cuda_kernel.cuh', '_hip_kernel.cuh')
+    output_source = output_source.replace('_cuda_kernel.cuh', '_hip_kernel.cuh')
 
     # Perform Kernel Launch Replacements
     if not hip_clang_launch:

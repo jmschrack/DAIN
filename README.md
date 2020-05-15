@@ -87,7 +87,7 @@ and Middlebury dataset:
 
 We are good to go by:
 
-    $ CUDA_VISIBLE_DEVICES=0 python demo_MiddleBury.py
+    $ CUDA_VISIBLE_DEVICES=0 python3 demo_MiddleBury.py
 
 The interpolated results are under `MiddleBurySet/other-result-author/[random number]/`, where the `random number` is used to distinguish different runnings. 
 

@@ -45,7 +45,7 @@ Just follow the guide until python errors out and asks you to initialize.
 ### Installation
 Download repository:
 
-    $ git clone https://github.com/baowenbo/DAIN.git
+    $ git clone -b HIP https://github.com/jmschrack/DAIN.git
 
 
     

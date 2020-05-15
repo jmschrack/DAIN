@@ -56,22 +56,26 @@ if args.output_directory:
 
 includes = [
     "my_package/DepthFlowProjection/*",
-    "my_package/DepthFlowProjection/depthflowproject_cuda.cc",
     "my_package/FilterInterpolation/*",
-    "my_package/FilterInterpolation/filterinterpolation_cuda.cc",
     "my_package/FlowProjection/*",
-    "my_package/FlowProjection/flowprojection_cuda.cc",
     "my_package/Interpolation/*",
-    "my_package/Interpolation/interpolation_cuda.cc",
     "my_package/InterpolationCh/*",
-    "my_package/InterpolationCh/interpolationch_cuda.cc",
     "my_package/MinDepthFlowProjection/*",
-    "my_package/MinDepthFlowProjection/mindepthflowprojection_cuda.cc",
     "my_package/SeparableConv/*",
-    "my_package/SeparableConv/separableconv_cuda.cc",
     "my_package/SeparableConvFlow/*",
-    "my_package/SeparableConvFlow/separableconvflow_cuda.cc",
     "PWCNet/correlation_package_pytorch1_0/*",
+
+]
+#we have to manually specify *.cc files for some reason.
+extraFiles = [
+    "my_package/DepthFlowProjection/depthflowprojection_cuda.cc",
+    "my_package/FilterInterpolation/filterinterpolation_cuda.cc",
+    "my_package/FlowProjection/flowprojection_cuda.cc",
+    "my_package/Interpolation/interpolation_cuda.cc",
+    "my_package/InterpolationCh/interpolationch_cuda.cc",
+    "my_package/MinDepthFlowProjection/mindepthflowprojection_cuda.cc",
+    "my_package/SeparableConv/separableconv_cuda.cc",
+    "my_package/SeparableConvFlow/separableconvflow_cuda.cc",
     "PWCNet/correlation_package_pytorch1_0/correlation_cuda.cc",
 ]
 
@@ -81,7 +85,12 @@ for new_dir in args.extra_include_dir:
         new_dir = os.path.join(new_dir, '**/*')
         includes.append(new_dir)
 
+#for safety
+#the .cuh extension does not change. If this script was previously run,  it will try to reconvert anything in the "hip" folder again into another a hip subfolder
+
 ignores = [
+"my_package/*/hip/*",
+"PWCNet/correlation_package_pytorch1_0/hip/*"
 ]
 
 if not args.out_of_place_only:
@@ -104,4 +113,11 @@ hipify_python.hipify(
     includes=includes,
     ignores=ignores,
     out_of_place_only=args.out_of_place_only,
-    hip_clang_launch=is_hip_clang())
+    hip_clang_launch=is_hip_clang(),
+    is_pytorch_extension=True,
+    extra_files=extraFiles)
+
+
+
+
+

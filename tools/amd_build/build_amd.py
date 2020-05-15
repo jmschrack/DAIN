@@ -56,14 +56,23 @@ if args.output_directory:
 
 includes = [
     "my_package/DepthFlowProjection/*",
+    "my_package/DepthFlowProjection/depthflowproject_cuda.cc",
     "my_package/FilterInterpolation/*",
+    "my_package/FilterInterpolation/filterinterpolation_cuda.cc",
     "my_package/FlowProjection/*",
+    "my_package/FlowProjection/flowprojection_cuda.cc",
     "my_package/Interpolation/*",
+    "my_package/Interpolation/interpolation_cuda.cc",
     "my_package/InterpolationCh/*",
+    "my_package/InterpolationCh/interpolationch_cuda.cc",
     "my_package/MinDepthFlowProjection/*",
+    "my_package/MinDepthFlowProjection/mindepthflowprojection_cuda.cc",
     "my_package/SeparableConv/*",
+    "my_package/SeparableConv/separableconv_cuda.cc",
     "my_package/SeparableConvFlow/*",
+    "my_package/SeparableConvFlow/separableconvflow_cuda.cc",
     "PWCNet/correlation_package_pytorch1_0/*",
+    "PWCNet/correlation_package_pytorch1_0/correlation_cuda.cc",
 ]
 
 for new_dir in args.extra_include_dir:

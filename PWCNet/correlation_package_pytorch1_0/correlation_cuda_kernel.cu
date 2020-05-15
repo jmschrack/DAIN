@@ -15,8 +15,9 @@ using at::Half;
 
 template<typename scalar_t>
 __forceinline__ __device__ scalar_t warpReduceSum(scalar_t val) {
+//FOR DAIN: changed from  val += __shfl_down_sync(FULL_MASK, val, offset); since FULL_MASK makes it identical
         for (int offset = 16; offset > 0; offset /= 2)
-                val += __shfl_down_sync(FULL_MASK, val, offset);
+                val += __shfl_down( val, offset);
         return val;
 }
 
@@ -127,7 +128,9 @@ __global__ void correlation_forward(scalar_t* __restrict__ output, const int nOu
                         }
 
                         if (blockDim.x == warpSize) {
+                            #ifndef __HIP_PLATFORM_HCC__
                             __syncwarp();
+                            #endif
                             acc0 = warpReduceSum(acc0);
                         } else {
                             __syncthreads();

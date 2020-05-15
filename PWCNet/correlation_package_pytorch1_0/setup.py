@@ -42,7 +42,7 @@ if os.path.exists(hip_path):
 setup(
     name='correlation_cuda',
     ext_modules=[
-        CUDAExtension('correlation_cuda', , extra_compile_args={'cxx': cxx_args, 'nvcc': nvcc_args})
+        CUDAExtension('correlation_cuda', src, extra_compile_args={'cxx': cxx_args, 'nvcc': nvcc_args})
     ],
     cmdclass={
         'build_ext': BuildExtension
